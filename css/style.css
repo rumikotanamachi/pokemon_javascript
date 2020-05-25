@@ -1,0 +1,107 @@
+*{
+  box-sizing:border-box;
+}
+
+
+body {
+
+    margin-top: 30px;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+
+}
+header{
+    margin: 15px;
+    text-align: center;
+
+}
+.first_continner{
+    margin-top: 20px;
+}
+h1{
+    text-align: center;
+    font-size: 25px;
+    margin: 10px;
+}
+
+.container{
+  padding: 0 15px;
+  margin: 0 auto;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.answer_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  height: 30px;
+  margin: 10px;
+}
+
+
+.rand_name img{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    width: auto;
+    max-width: 85%;
+    max-height: 85%;
+    margin: auto;
+    object-fit: cover;
+}
+
+.rand_area{
+    box-sizing: border-box;
+    padding: 10px 10px 20px 10px;
+    text-align: center;
+    display: flexs;
+    justify-content: center;
+}
+
+
+
+
+.rand_area button{
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #FFF;
+
+}
+
+.stop{
+    background-color: #47bc68;
+    width: 250px;
+    height: 50px;
+
+}
+
+.restart{
+    background-color: #ff8282;
+    width: 250px;
+    height: 50px;
+
+}
+.answer{
+    background-color: #3399FF;
+    width: 250px;
+    height: 50px;
+}
+
+p{
+    font-size: 25px;
+    margin: 0;
+}
+
+button{
+    margin: 3px;
+}
+
+footer{
+    background-color: #3399FF;
+}

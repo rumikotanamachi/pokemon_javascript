@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <img src="img/logo.png" width="70%" height="60%">
+        <div class=" first_continner">
+            <h1>このポケモンなーんだ？</h1>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="rand_name"></div>
+    </div>
+
+
+    <div class="answer_container">
+        <div class="answer_text"></div>
+    </div>
+
+    <div class="rand_area">
+        <button type="button" class="stop">ストップ！</button>
+        <button type="button" class="restart" style="display: none;">スタート</button>
+        <button type="button" class="answer">正解は？</button>
+    </div>
+
+
+    <script>
+
+        $(function () {
+
+            var aryList = [
+                { name: "イトマル", image: 'img/1.png' },
+                { name: "ランターン", image: 'img/2.png' },
+                { name: "カブトプス", image: 'img/3.png' },
+                { name: "シードラ", image: 'img/4.png' },
+                { name: "ドードリオ", image: 'img/5.png' },
+                { name: "ウツボット", image: 'img/6.png' },
+                { name: "ピジョット", image: 'img/7.png' },
+                { name: "リザード", image: 'img/8.png' },
+                { name: "フシギダネ", image: 'img/9.png' },
+                { name: "オオタチ", image: 'img/10.png' }
+            ];
+
+            //グローバル変数
+            var key = 0;
+            var max_len = aryList.length - 1;
+            var randStart;
+            var speed = 200; //シャッフルスピード
+
+            //文字シャッフル関数
+            //20ミリ秒毎に候補の文字列をシャッフルさせる
+            var randShuffle = function () {
+                if (key > max_len) key = 0;
+                $('.rand_name').html(`<img src="${aryList[key].image}" alt="" srcset="" width:100px,height:100px;>`);
+                key++;
+            }
+            console.log(aryList);
+            //文字シャッフル開始
+            randStart = setInterval(randShuffle, speed);
+
+            //回転を止める（抽選結果）
+            $('.stop').click(function () {
+                var random = Math.floor(Math.random() * (max_len + 1)); //ランダムで配列の数を取得
+                $('.rand_name').html(`<img src="${aryList[random].image}" alt="" srcset="">`); //対象の数値に該当する文字を表示
+                $('.answer_text').html(`<h1 id="answer" style="display: none">${aryList[random].name}</h1>`); //対象の数値に該当する文字を表示
+
+                clearInterval(randStart); //シャッフルストップ
+                $(this).hide(); //止めるボタンの非表示
+                $('.restart').show(); //再開ボタンの表示
+            });
+            //正解の表示
+            $('.answer').click(function () {
+                console.log(answer);
+                // $('.answer_text').html(answer); //対象の数値に該当する文字を表示
+                $('h1').show(); //対象の数値に該当する文字を表示
+            })
+
+            //回転を再開する
+            $('.restart').click(function () {
+                $(this).hide(); //再開ボタンの非表示
+                $('.stop').show(); //止めるボタンの表示
+                randStart = setInterval(randShuffle, speed); //シャッフル再開
+            });
+
+        });
+    </script>
+</body>
+
+</html>

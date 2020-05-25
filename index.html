@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <img src="img/logo.png" width="70%" height="60%">
+        <div class=" first_continner">
+            <h1>このポケモンなーんだ？</h1>
+        </div>
+    </header>
+
+
+    <div class="container" id="container">
+        <img id="rand_img" src="img/1.png"></img>
+    </div>
+
+
+    <div class="answer_container" id="answer_container">
+        <p id="answer_text" style="visibility:hidden;">こたえは</p>
+    </div>
+
+    <div class="rand_area">
+        <button type="button" class="restart" onclick="restart()" id="restart_btn" style="display:none">スタート</button>
+        <button type="button" class="stop" onclick="stopTimerClick()" id="stop">ストップ！</button>
+        <button type="button" class="restart" onclick="OnButtonClick()" visibility: hidden ;>隠しボタン</button>
+        <button type="button" class="answer" name="" onclick="answer_btn()">せいかいは？</button>
+
+    </div>
+
+
+    <script>
+
+        var aryList = [
+            { name: "セレビィ", image: 'img/1.png' },
+            { name: "ブビィ", image: 'img/2.png' },
+            { name: "レディアン", image: 'img/3.png' },
+            { name: "オムスター", image: 'img/4.png' },
+            { name: "ウパー", image: 'img/5.png' },
+            { name: "エレブー", image: 'img/6.png' },
+            { name: "パウワウ", image: 'img/7.png' },
+            { name: "ドククラゲ", image: 'img/8.png' },
+            { name: "クサイハナ", image: 'img/9.png' },
+            { name: "ピッピ", image: 'img/10.png' }
+        ];
+
+
+
+        //グローバル変数
+        var key = 0;
+        var max_len = aryList.length - 1;
+        var randStart;
+        var speed = 200;
+
+
+
+        //////////////// スタートボタンを押してルーレットスタート//////////////
+        let OnButtonClick = function () {
+
+            if (key > max_len) key = 0;
+            var random = aryList[Math.floor(Math.random() * aryList.length)];
+
+            var container = document.getElementById("container");
+            container.innerHTML = `<img src=${random.image}>`;
+            var answer_container = document.getElementById("answer_container");
+            answer_container.innerHTML = `<p id="p">${random.name}</p>`;
+            document.getElementById("answer_container").style.visibility = "hidden";
+            key++;
+            document.getElementById("restart_btn").style.display = 'none';
+            document.getElementById("stop").style.display = 'inline';
+        }
+        ////////////////////////////////ランダム表示//////////////////////////////
+        randStart = setInterval(OnButtonClick, speed);
+
+
+        ///////////////////////シャッフルストップ/////////////////////
+        let stopTimerClick = function () {
+            clearInterval(randStart);
+            document.getElementById("restart_btn").style.display = 'inline';
+            document.getElementById("stop").style.display = 'none';
+        }
+
+
+        ///////////////////////////////////// 正解表示//////////////////////////////////////////
+
+
+        function answer_btn() {
+            let elem = document.getElementById('answer_container');
+            // answer_container.innerHTML = `${elem.innerHTML}`;
+            console.log(elem);
+            if (elem.style.visibility == "hidden") {
+                elem.style.visibility = "visible";
+                console.log(elem.innerHTML);
+
+            }
+        }
+
+        ////////////////////////////////////// シャッフル再開///////////////////////////////////
+        var restart = function () {
+            randStart = setInterval(OnButtonClick, speed);
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
